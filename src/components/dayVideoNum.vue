@@ -7,7 +7,6 @@
 <script>
 import echarts from "echarts/lib/echarts";
 
-
 export default {
   mounted() {
     this.myChart = echarts.init(document.getElementById("dayVideoNum"));
@@ -15,13 +14,22 @@ export default {
   },
   props: ["videoData"],
   methods: {
-      
     initData() {
-        console.log("initData...")
-        var colors = ['#5793f3', '#d14a61', '#675bba'];
+      console.log(this.videoData, "initData...", this.videoData.month);
+      // this.videoData.month = myData.month;
+      // this.total = myData.total;
+      // this.success = myData.success;
+      // this.error = myData.error;
+      // this.wait = myData.wait;
+
+      var colors = ["#5793f3", "#d14a61", "#675bba"];
       const option = {
         color: colors,
-
+        title: {
+          text: "视频量统计",
+          subtext: "",
+          x: "left"
+        },
         tooltip: {
           trigger: "axis",
           axisPointer: {
@@ -47,20 +55,7 @@ export default {
             axisTick: {
               alignWithLabel: true
             },
-            data: [
-              "1月",
-              "2月",
-              "3月",
-              "4月",
-              "5月",
-              "6月",
-              "7月",
-              "8月",
-              "9月",
-              "10月",
-              "11月",
-              "12月"
-            ]
+            data: this.videoData.month
           }
         ],
         yAxis: [
@@ -68,7 +63,7 @@ export default {
             type: "value",
             name: "视频可播放",
             min: 0,
-            max: 250,
+            max: 20,
             position: "right",
             axisLine: {
               lineStyle: {
@@ -76,14 +71,14 @@ export default {
               }
             },
             axisLabel: {
-              formatter: "{value} ml"
+              formatter: "{value} 条"
             }
           },
           {
             type: "value",
             name: "视频被封禁",
             min: 0,
-            max: 250,
+            max: 20,
             position: "right",
             offset: 80,
             axisLine: {
@@ -92,14 +87,14 @@ export default {
               }
             },
             axisLabel: {
-              formatter: "{value} ml"
+              formatter: "{value} 条"
             }
           },
           {
             type: "value",
             name: "视频总数",
             min: 0,
-            max: 25,
+            max: 20,
             position: "left",
             axisLine: {
               lineStyle: {
@@ -107,66 +102,27 @@ export default {
               }
             },
             axisLabel: {
-              formatter: "{value} °C"
+              formatter: "{value} 条"
             }
           }
         ],
         series: [
           {
-            name: "蒸发量",
+            name: "视频可播放",
             type: "bar",
-            data: [
-              2.0,
-              4.9,
-              7.0,
-              23.2,
-              25.6,
-              76.7,
-              135.6,
-              162.2,
-              32.6,
-              20.0,
-              6.4,
-              3.3
-            ]
+            data: this.videoData.success
           },
           {
-            name: "降水量",
+            name: "视频被封禁",
             type: "bar",
             yAxisIndex: 1,
-            data: [
-              2.6,
-              5.9,
-              9.0,
-              26.4,
-              28.7,
-              70.7,
-              175.6,
-              182.2,
-              48.7,
-              18.8,
-              6.0,
-              2.3
-            ]
+            data: this.videoData.error
           },
           {
-            name: "平均温度",
+            name: "视频总数",
             type: "line",
             yAxisIndex: 2,
-            data: [
-              2.0,
-              2.2,
-              3.3,
-              4.5,
-              6.3,
-              10.2,
-              20.3,
-              23.4,
-              23.0,
-              16.5,
-              12.0,
-              6.2
-            ]
+            data: this.videoData.month
           }
         ]
       };
@@ -176,7 +132,7 @@ export default {
   },
   watch: {
     videoData: function() {
-        console.log("watch videoData")
+      console.log("watch videoData");
       this.initData();
     }
   }

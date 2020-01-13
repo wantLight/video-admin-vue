@@ -11,11 +11,11 @@ let routerMode = 'hash';
 let baseImgPath;
 
 if (process.env.NODE_ENV == 'development') {
-	baseUrl = 'http://localhost:8085';
-	baseImgPath = 'http://localhost:8085';
+	// baseUrl = 'http://localhost:8085';
+	// baseImgPath = 'http://localhost:8085';
 	
-	// baseUrl = 'http://120.79.143.66:8085';
-    // baseImgPath = 'http://120.79.143.66:8080/video';
+	baseUrl = 'http://120.79.143.66:8085';
+    baseImgPath = 'http://120.79.143.66:8080/video';
 }else{
 	baseUrl = 'http://120.79.143.66:8085';
     baseImgPath = 'http://120.79.143.66:8080/video';

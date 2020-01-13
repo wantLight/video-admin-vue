@@ -7,11 +7,12 @@
         <el-table-column label="视频描述" prop="videoDesc"></el-table-column>
         <el-table-column label="观看地址" prop="videoPath">
           <template slot-scope="scope">
-            <a
+            <!-- <a
               type="primary"
               :href="'http://120.79.143.66:8080//'+ scope.row.videoPath"
               target="_blank"
-            >点我观看</a>
+            >点我观看</a> -->
+            <el-button type="primary" icon="el-icon-video-play" @click="watchVideo(scope.row)">点我观看</el-button>
           </template>
         </el-table-column>
         <el-table-column label="视频时长" prop="videoSeconds"></el-table-column>
@@ -53,53 +54,51 @@
         ></el-pagination>
       </div>
     </div>
+
+
+    <el-dialog title="视频播放" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+      <video-play :video-data="videoData"></video-play>
+    </el-dialog>
+    
+
   </div>
 </template>
 
 <script>
 import headTop from "../components/headTop";
 import { getVideoList, forbidVideo } from "@/api/getData";
+import videoPlay from "../components/videoPlay";
+
 export default {
   data() {
     return {
       tableData: [
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1517 弄"
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1516 弄"
-        }
+       
       ],
       limit: 10,
+      videoFlag : false,
       currentPage: 1,
-      count: 0
+      count: 0,
+      videoData:{},
+      dialogVisible:false
     };
   },
   components: {
-    headTop
+    headTop,
+    videoPlay
   },
   created() {
     this.getBgms();
   },
   methods: {
     handleCurrentChange(val) {
-      console.log(val);
       this.currentPage = val;
       this.getBgms();
+    },
+    watchVideo (e) {
+      console.log(e,"watchVideo!!!!!")
+      this.dialogVisible = true;
+      this.videoData = e;
     },
     async getBgms() {
       const bgms = await getVideoList({

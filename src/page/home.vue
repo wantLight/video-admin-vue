@@ -3,6 +3,7 @@
         <head-top></head-top>
 		<section class="data_section">
 			<header class="section_title">数据统计</header>
+            <!-- Layout 布局 -->
 			<el-row :gutter="20" style="margin-bottom: 10px;">
                 <el-col :span="4"><div class="data_list today_head"><span class="data_num head">当日数据：</span></div></el-col>
 				<el-col :span="4"><div class="data_list"><span class="data_num">{{active}}</span> 活跃用户</div></el-col>
@@ -12,8 +13,19 @@
                 <el-col :span="4"><div class="data_list"><span class="data_num">{{count}}</span> 注册用户</div></el-col>
             </el-row>
 		</section>
-        <!-- <visitor-pie :pie-data="{count,active}"></visitor-pie> -->
-        <day-video-num :video-data="{count,active}"> </day-video-num>
+
+        <!-- 首页底部划分 -->
+        <section class="section_echart">
+            <el-row>
+                <el-col :span="12">
+                    <visitor-pie :pie-data="{count,active}"></visitor-pie>
+                </el-col>
+                <el-col :span="12">
+                    <day-video-num :video-data="{month,total,success,error,wait}"> </day-video-num>
+                </el-col>
+            </el-row>
+        </section>
+        
     </div>
 </template>
 
@@ -21,12 +33,17 @@
 	import headTop from '../components/headTop'
     import visitorPie from '../components/visitorPie'
     import dayVideoNum from '../components/dayVideoNum'
-	import {getCount, getToday} from '@/api/getData'
+	import {getCount, getToday, getVideoNum} from '@/api/getData'
     export default {
     	data(){
     		return {
                 count:0,
-                active:0
+                active:0,
+                month:[],
+                total:[],
+                success:[],
+                wait:[],
+                error:[]
     		}
     	},
     	components: {
@@ -34,9 +51,9 @@
             visitorPie,
             dayVideoNum
     	},
-    	mounted(){
-    	    this.initData()
-
+    	mounted (){
+            this.initData();
+            this.getVideoNums();
     	},
         computed: {
 
@@ -50,8 +67,17 @@
                 this.active = active.data
                 console.log(active);
             },
-            getVideoNum(){
+            async getVideoNums(){
                 
+                let datas = await getVideoNum();
+                let myData = datas.data;
+                this.month = myData.month;
+                this.total = myData.total;
+                this.success = myData.success;
+                this.error = myData.error;
+                this.wait = myData.wait;
+                
+                console.log("myData!!!!!!!",myData)
             }
     	}
     }
