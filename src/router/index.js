@@ -50,7 +50,7 @@ const routes = [
             }, {
                 path: '/explain',
                 component: explain,
-                meta: ['说明', '说明'],
+                meta: ['其它', '说明'],
             }]
     }
 ]

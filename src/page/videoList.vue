@@ -5,6 +5,12 @@
       <el-table :data="tableData" style="width: 100%">
         <el-table-column label="视频编号" prop="id"></el-table-column>
         <el-table-column label="视频描述" prop="videoDesc"></el-table-column>
+        <el-table-column label="视频封面" prop="coverPath">
+          <template slot-scope="scope">
+            <el-image style="width: 100px; height: 100px" :src='baseImgPath+scope.row.coverPath' :preview-src-list="srcList"></el-image>
+          </template>
+        </el-table-column>
+        
         <el-table-column label="观看地址" prop="videoPath">
           <template slot-scope="scope">
             <!-- <a
@@ -68,6 +74,7 @@
 import headTop from "../components/headTop";
 import { getVideoList, forbidVideo } from "@/api/getData";
 import videoPlay from "../components/videoPlay";
+import { baseImgPath } from "@/config/env";
 
 export default {
   data() {
