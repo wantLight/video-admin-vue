@@ -32,12 +32,16 @@
         ></el-pagination>
       </div>
     </div>
+
+    <bottom></bottom>
   </div>
 </template>
 
 <script>
 import headTop from "../components/headTop";
 import { getUserList } from "@/api/getData";
+import bottom from "../components/bottom";
+
 export default {
   data() {
     return {
@@ -50,7 +54,8 @@ export default {
     };
   },
   components: {
-    headTop
+    headTop,
+    bottom
   },
   created() {
     this.getUsers();

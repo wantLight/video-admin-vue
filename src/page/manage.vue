@@ -24,7 +24,7 @@
                         <el-menu-item index="bgmUpload">添加bgm</el-menu-item>
 					</el-submenu>
 					<el-submenu index="7">
-						<template slot="title"><i class="el-icon-warning"></i>说明</template>
+						<template slot="title"><i class="el-icon-warning"></i>其它</template>
 						<el-menu-item index="explain">说明</el-menu-item>
 					</el-submenu>
 				</el-menu>
@@ -35,6 +35,7 @@
 <!--				</keep-alive>-->
 			</el-col>
 		</el-row>
+
   	</div>
 </template>
 

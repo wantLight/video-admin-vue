@@ -32,12 +32,15 @@
             </el-form-item>
         </el-form>
         </el-col>
+
+        <bottom></bottom>
     </div>
 </template>
 
 <script>
 	import headTop from '../components/headTop'
     import {addBgm} from "../api/getData";
+    import bottom from "../components/bottom";
     export default {
 	    data(){
 	        return{
@@ -61,7 +64,8 @@
             }
         },
     	components: {
-    		headTop,
+            headTop,
+            bottom
     	},
         methods:{
             handleSuccess(res, file) {

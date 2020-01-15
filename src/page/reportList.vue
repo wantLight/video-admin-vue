@@ -41,6 +41,7 @@
       <video-play :video-data="videoData"></video-play>
     </el-dialog>
 
+    <bottom></bottom>
   </div>
 </template>
 
@@ -48,6 +49,7 @@
 import headTop from "../components/headTop";
 import { getReportsList, forbidVideo } from "@/api/getData";
 import videoPlay from "../components/videoPlay";
+import bottom from "../components/bottom";
 
 export default {
   data() {
@@ -62,7 +64,8 @@ export default {
   },
   components: {
     headTop,
-    videoPlay
+    videoPlay,
+    bottom
   },
   created() {
     this.getBgms();

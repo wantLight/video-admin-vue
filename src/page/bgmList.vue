@@ -45,12 +45,15 @@
                 </el-pagination>
             </div>
         </div>
+
+        <bottom></bottom>
     </div>
 </template>
 
 <script>
     import headTop from '../components/headTop'
     import {getBgmList,delBgm} from '@/api/getData'
+    import bottom from "../components/bottom";
     export default {
         data(){
             return {
@@ -79,7 +82,8 @@
             }
         },
     	components: {
-    		headTop,
+            headTop,
+            bottom
     	},
         created(){
             this.getBgms();

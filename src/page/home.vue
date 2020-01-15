@@ -26,6 +26,7 @@
             </el-row>
         </section>
         
+        <bottom></bottom>
     </div>
 </template>
 
@@ -33,7 +34,8 @@
 	import headTop from '../components/headTop'
     import visitorPie from '../components/visitorPie'
     import dayVideoNum from '../components/dayVideoNum'
-	import {getCount, getToday, getVideoNum} from '@/api/getData'
+    import {getCount, getToday, getVideoNum} from '@/api/getData'
+    import bottom from "../components/bottom";
     export default {
     	data(){
     		return {
@@ -49,7 +51,8 @@
     	components: {
     		headTop,
             visitorPie,
-            dayVideoNum
+            dayVideoNum,
+            bottom
     	},
     	mounted (){
             this.initData();

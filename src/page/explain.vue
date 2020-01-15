@@ -37,13 +37,15 @@
         <div>本项目仅用于毕设《基于SpringBoot与微信小程序的校园短视频分享平台》学习展示使用</div>
       </el-collapse-item>
     </el-collapse>
-
-
+    
+    <bottom></bottom>
   </div>
 </template>
 
 <script>
 import headTop from "../components/headTop";
+import bottom from "../components/bottom";
+
 export default {
   data() {
     return {
@@ -55,7 +57,8 @@ export default {
     };
   },
   components: {
-    headTop
+    headTop,
+    bottom
   },
   methods: {
     handleChange(val) {

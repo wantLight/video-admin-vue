@@ -61,12 +61,13 @@
       </div>
     </div>
 
-
-    <el-dialog title="视频播放" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+    <!-- :before-close="handleClose" -->
+    <el-dialog title="视频播放" :visible.sync="dialogVisible" width="30%" >
       <video-play :video-data="videoData"></video-play>
     </el-dialog>
     
 
+    <bottom></bottom>
   </div>
 </template>
 
@@ -75,6 +76,7 @@ import headTop from "../components/headTop";
 import { getVideoList, forbidVideo } from "@/api/getData";
 import videoPlay from "../components/videoPlay";
 import { baseImgPath } from "@/config/env";
+import bottom from "../components/bottom";
 
 export default {
   data() {
@@ -92,7 +94,8 @@ export default {
   },
   components: {
     headTop,
-    videoPlay
+    videoPlay,
+    bottom
   },
   created() {
     this.getBgms();

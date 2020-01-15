@@ -21,12 +21,16 @@
 <!--				<p class="tip">注册过的用户可凭账号密码登录</p>-->
 	  		</section>
 	  	</transition>
+
+
+		  <bottom></bottom>
   	</div>
 </template>
 
 <script>
 	import {login} from '@/api/getData'
 	import {mapActions, mapState} from 'vuex'
+	import bottom from "../components/bottom";
 
 	export default {
 	    data(){
@@ -55,6 +59,9 @@
 		computed: {
 			...mapState(['adminInfo']),
 		},
+		components: {
+            bottom
+    	},
 		methods: {
 			...mapActions(['getAdminData']),
 			async submitForm(formName) {
