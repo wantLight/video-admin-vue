@@ -1,6 +1,8 @@
 <template>
     <div class="fillcontain">
         <head-top></head-top>
+        <audio :src="currentSong" autoplay=""  @ended="nextsong()">    </audio>
+
         <div class="table_container">
             <el-table
                 v-loading="loading"
@@ -27,7 +29,8 @@
                     <template slot-scope="scope">
                         <el-button
                             size="mini"
-                            @click="handlePlayClick(scope.$index, scope.row)">点我播放</el-button>
+                            @click="handlePlayClick(baseImgPath+scope.row.path)"><i class="el-icon-headset"></i>点我播放</el-button>
+                        <!-- <audio :src=baseImgPath+scope.row.path :id="musicMp3+scope.row.id" autoplay="" controls=""></audio>     -->
                         <el-button
                             size="mini"
                             type="danger"
@@ -54,6 +57,8 @@
     import headTop from '../components/headTop'
     import {getBgmList,delBgm} from '@/api/getData'
     import bottom from "../components/bottom";
+    import { baseImgPath } from "@/config/env";
+    
     export default {
         data(){
             return {
@@ -78,7 +83,10 @@
                 limit: 10,
                 currentPage: 1,
                 count: 0,
-                loading: true
+                loading: true,
+                baseImgPath: baseImgPath,
+                currentSong:"",
+
             }
         },
     	components: {
@@ -103,10 +111,12 @@
                 this.currentPage = bgms.data.current
                 this.loading = false
             },
-            handlePlayClick(index, row) {
-                console.log(index, row);
-                const serverUrl = 'http://120.79.143.66:8080//'
-                window.open(serverUrl+row.path,'_blank')
+            handlePlayClick(test) {
+                console.log(test);
+                this.currentSong=test;
+                // const serverUrl = 'http://120.79.143.66:8080//'
+                // window.open(serverUrl+row.path,'_blank')
+
             },
             async handleDelete(index, row,tableData) {
                 console.log(index, row);

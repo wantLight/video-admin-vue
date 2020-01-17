@@ -18,7 +18,7 @@
                     drag
                     :on-success="handleSuccess"
                     :before-upload="beforeUpload"
-                    action="http://120.79.143.66:8080//bgm/bgmUpload"
+                    action="http://120.79.143.66:8085//bgm/bgmUpload"
                     name="file"
                     >
                     <i class="el-icon-upload"></i>
@@ -52,7 +52,7 @@
                 rules: {
                     author: [
                         { required: true, message: '请输入歌手名称', trigger: 'blur' },
-                        { min: 1, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                        { min: 1, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
                     ],
                     name: [
                         { required: true, message: '请输入歌曲名称', trigger: 'blur' }

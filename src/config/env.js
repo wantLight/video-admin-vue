@@ -15,10 +15,10 @@ if (process.env.NODE_ENV == 'development') {
 	// baseImgPath = 'http://localhost:8085';
 	
 	baseUrl = 'http://120.79.143.66:8085';
-    baseImgPath = 'http://120.79.143.66:8080/video';
+    baseImgPath = 'http://120.79.143.66:8080';
 }else{
 	baseUrl = 'http://120.79.143.66:8085';
-    baseImgPath = 'http://120.79.143.66:8080/video';
+    baseImgPath = 'http://120.79.143.66:8080';
 }
 
 export {
